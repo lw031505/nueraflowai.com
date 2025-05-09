@@ -5,35 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NuEraFlow AI</title>
   <style>
+    /* GLOBALS */
     *{box-sizing:border-box;margin:0;padding:0}
-    html,body{font-family:'Segoe UI',sans-serif;background:#000;color:#fff;scroll-behavior:smooth}
-    h2,h3{font-weight:600}
+    html,body{font-family:'Segoe UI',sans-serif;background:#1a1a1a;color:#fff;scroll-behavior:smooth}
+    h2{font-weight:600}
     section{width:100%}
-    .container{max-width:1100px;margin:0 auto;padding:4rem 2rem}
+    .container{max-width:1000px;margin:0 auto;padding:3.5rem 2rem;background:#222;border-radius:14px}
 
     /* HERO */
-    .hero{height:100vh;background:url('assets/hero.jpg') center/cover no-repeat;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;position:relative}
-    .hero::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.65)}
-    .hero>*{position:relative;z-index:2}
-    .logo{width:260px;margin-bottom:2.5rem;filter:drop-shadow(0 0 10px rgba(37,99,235,.7))}
-    .tagline{font-size:1.5rem;font-weight:300}
+    .hero{height:90vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+    .logo{width:320px;margin-bottom:2rem;filter:drop-shadow(0 0 10px rgba(37,99,235,.8))}
+    .tagline{font-size:1.6rem;font-weight:300;margin-top:.5rem}
 
     /* ABOUT */
-    .about{background:#0d0d0d;position:relative;overflow:hidden}
-    .about::before{content:"";position:absolute;top:-100px;right:-100px;width:300px;height:300px;background:radial-gradient(circle at center,#2563eb 0%,transparent 70%);opacity:.4;filter:blur(50px)}
-    .about-grid{display:grid;grid-template-columns:1fr;gap:2rem}
-    @media(min-width:768px){.about-grid{grid-template-columns:1fr 1fr}}
-    .about img{width:100%;border-radius:10px;object-fit:cover}
     .about-text h2{font-size:2.25rem;margin-bottom:1rem}
     .about-text p{line-height:1.6;margin-bottom:1rem;font-weight:300}
 
     /* CONTACT */
-    .contact{background:#111;text-align:center}
     .contact h2{font-size:2rem;margin-bottom:.5rem}
     .contact p{font-weight:300;margin-bottom:2rem}
     form{max-width:500px;margin:0 auto}
-    input,textarea{width:100%;padding:.85rem;margin:.5rem 0;border:none;border-radius:6px;font-size:1rem;color:#111}
-    button{display:inline-block;padding:.85rem 2rem;background:#2563eb;border:none;border-radius:6px;color:#fff;font-size:1rem;cursor:pointer;transition:background .3s}
+    input,textarea{width:100%;padding:.9rem;margin:.6rem 0;border:none;border-radius:10px;font-size:1rem;color:#111}
+    button{display:inline-block;padding:.9rem 2.2rem;background:#2563eb;border:none;border-radius:10px;color:#fff;font-size:1rem;cursor:pointer;transition:background .3s}
     button:hover{background:#1d4ed8}
 
     /* reveal */
@@ -50,16 +43,11 @@
 
   <!-- ABOUT US -->
   <section class="about" id="about">
-    <div class="container about-grid">
-      <div class="about-text reveal">
-        <h2>About Us</h2>
-        <p>NuEraFlow AI is a forward-thinking automation agency that leverages cutting-edge artificial intelligence to streamline operations, revive dead leads, and unlock hidden revenue for service-based businesses.</p>
-        <p>Our mission is simple: <strong>empower entrepreneurs with the same AI firepower used by Fortune 500 companies</strong>—without the enterprise price tag. Whether you’re a dental clinic looking to fill your calendar or a solar dealer ready to dominate your territory, we design bespoke automations that work while you sleep.</p>
-        <p>Founded by Lucas Wagner — an engineer with a passion for intelligent automation — NuEraFlow AI blends data science with sales psychology to deliver results that feel like magic (but are rooted in math).</p>
-      </div>
-      <div class="reveal">
-        <img src="assets/team.jpg" alt="Team working on AI automations">
-      </div>
+    <div class="container about-text reveal">
+      <h2>About Us</h2>
+      <p>NuEraFlow AI is a forward-thinking automation agency that leverages cutting-edge artificial intelligence to streamline operations, revive dead leads, and unlock hidden revenue for service-based businesses.</p>
+      <p>Our mission is simple: <strong>empower entrepreneurs with the same AI firepower used by Fortune 500 companies</strong>—without the enterprise price tag. Whether you’re a dental clinic looking to fill your calendar or a solar dealer ready to dominate your territory, we design bespoke automations that work while you sleep.</p>
+      <p>Founded by Lucas Wagner — an engineer with a passion for intelligent automation — NuEraFlow AI blends data science with sales psychology to deliver results that feel like magic (but are rooted in math).</p>
     </div>
   </section>
 
