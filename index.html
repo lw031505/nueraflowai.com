@@ -4,46 +4,84 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NuEraFlow AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
-    /* GLOBALS */
+    :root{
+      --bg:#1a1a1a; /* single charcoal tone */
+      --surface:#232323;
+      --primary:#2563eb;
+      --radius:16px;
+    }
     *{box-sizing:border-box;margin:0;padding:0}
-    html,body{font-family:'Segoe UI',sans-serif;background:#1a1a1a;color:#fff;scroll-behavior:smooth}
-    h2{font-weight:600}
-    section{width:100%}
-    .container{max-width:1000px;margin:0 auto;padding:3.5rem 2rem;background:#222;border-radius:14px}
+    html,body{font-family:'Poppins',sans-serif;background:var(--bg);color:#fff;scroll-behavior:smooth}
+    h1,h2{font-weight:600}
+    a{color:inherit;text-decoration:none}
+    /* ---------- NAV ---------- */
+    header{position:fixed;top:0;left:0;width:100%;padding:.8rem 2rem;display:flex;justify-content:center;z-index:1000;backdrop-filter:blur(8px);background:rgba(26,26,26,.7);border-bottom:1px solid rgba(255,255,255,.05)}
+    nav ul{display:flex;gap:1.5rem;list-style:none}
+    nav a{font-size:.9rem;letter-spacing:.5px;position:relative}
+    nav a::after{content:"";position:absolute;left:0;bottom:-3px;width:0;height:2px;background:var(--primary);transition:width .3s}
+    nav a:hover::after{width:100%}
 
-    /* HERO */
-    .hero{height:90vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
-    .logo{width:320px;margin-bottom:2rem;filter:drop-shadow(0 0 10px rgba(37,99,235,.8))}
-    .tagline{font-size:1.6rem;font-weight:300;margin-top:.5rem}
+    /* ---------- SECTIONS ---------- */
+    section{padding:4.5rem 1.5rem;margin-top:4rem}
+    .container{max-width:1000px;margin:0 auto}
 
-    /* ABOUT */
-    .about-text h2{font-size:2.25rem;margin-bottom:1rem}
-    .about-text p{line-height:1.6;margin-bottom:1rem;font-weight:300}
+    /* ---------- HERO ---------- */
+    .hero{min-height:92vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+    .logo{width:380px;margin-bottom:2rem;filter:drop-shadow(0 0 12px rgba(37,99,235,.8))}
+    .tagline{font-size:1.7rem;font-weight:300}
+    .cta{margin-top:2.8rem;display:inline-block;padding:1rem 2.5rem;background:var(--primary);border-radius:var(--radius);font-weight:600;transition:background .3s}
+    .cta:hover{background:#1d4ed8}
 
-    /* CONTACT */
-    .contact h2{font-size:2rem;margin-bottom:.5rem}
-    .contact p{font-weight:300;margin-bottom:2rem}
-    form{max-width:500px;margin:0 auto}
-    input,textarea{width:100%;padding:.9rem;margin:.6rem 0;border:none;border-radius:10px;font-size:1rem;color:#111}
-    button{display:inline-block;padding:.9rem 2.2rem;background:#2563eb;border:none;border-radius:10px;color:#fff;font-size:1rem;cursor:pointer;transition:background .3s}
+    /* ---------- ABOUT ---------- */
+    .about .content{background:var(--surface);border-radius:var(--radius);padding:3rem}
+    .about p{line-height:1.65;margin-top:1.1rem;font-weight:300}
+
+    /* ---------- FEATURES ---------- */
+    .features .grid{display:grid;gap:2rem;margin-top:3rem}
+    .card{background:var(--surface);border-radius:var(--radius);padding:2rem;text-align:center;transition:transform .3s}
+    .card:hover{transform:translateY(-6px)}
+    .card h3{margin-top:1rem;font-size:1.25rem}
+    .icon{font-size:2.5rem;color:var(--primary)}
+
+    @media(min-width:700px){.features .grid{grid-template-columns:repeat(3,1fr)}}
+
+    /* ---------- CONTACT ---------- */
+    form{max-width:600px;margin:0 auto;margin-top:2rem;display:flex;flex-direction:column;gap:1rem}
+    input,textarea{padding:1rem;border:none;border-radius:var(--radius);font-family:inherit;font-size:1rem;color:#111}
+    button{padding:1rem 2rem;background:var(--primary);border:none;border-radius:var(--radius);color:#fff;font-size:1rem;cursor:pointer;transition:background .3s;width:fit-content;margin:0 auto}
     button:hover{background:#1d4ed8}
 
-    /* reveal */
-    .reveal{opacity:0;transform:translateY(40px);transition:all .6s ease}
+    /* ---------- SCROLL ANIMATION ---------- */
+    .reveal{opacity:0;transform:translateY(40px);transition:all .7s ease}
     .reveal.active{opacity:1;transform:none}
   </style>
 </head>
 <body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
   <!-- HERO -->
-  <section class="hero">
-    <img src="assets/logo.png" alt="NuEraFlow AI logo" class="logo">
-    <p class="tagline">Empowering Decisions with AI</p>
+  <section class="hero" id="hero">
+    <img src="assets/logo.png" alt="NuEraFlow AI logo" class="logo reveal">
+    <p class="tagline reveal">Empowering Decisions with AI</p>
+    <a href="#contact" class="cta reveal">Get Started</a>
   </section>
 
-  <!-- ABOUT US -->
+  <!-- ABOUT -->
   <section class="about" id="about">
-    <div class="container about-text reveal">
+    <div class="container content reveal">
       <h2>About Us</h2>
       <p>NuEraFlow AI is a forward-thinking automation agency that leverages cutting-edge artificial intelligence to streamline operations, revive dead leads, and unlock hidden revenue for service-based businesses.</p>
       <p>Our mission is simple: <strong>empower entrepreneurs with the same AI firepower used by Fortune 500 companies</strong>—without the enterprise price tag. Whether you’re a dental clinic looking to fill your calendar or a solar dealer ready to dominate your territory, we design bespoke automations that work while you sleep.</p>
@@ -51,24 +89,49 @@
     </div>
   </section>
 
+  <!-- FEATURES -->
+  <section class="features" id="features">
+    <div class="container reveal">
+      <h2 style="text-align:center">Why Choose NuEraFlow AI?</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="icon">⚡️</div>
+          <h3>Lightning-Fast Automations</h3>
+          <p>Deploy workflows in days, not weeks—so you see ROI almost instantly.</p>
+        </div>
+        <div class="card">
+          <div class="icon">📈</div>
+          <h3>Revenue Revival</h3>
+          <p>We turn cold or dead leads into booked appointments and sales on autopilot.</p>
+        </div>
+        <div class="card">
+          <div class="icon">🔒</div>
+          <h3>Secure & Scalable</h3>
+          <p>Built with best-practice security and limitless scalability—grow without limits.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- CONTACT -->
   <section class="contact" id="contact">
     <div class="container reveal">
-      <h2>Contact Us</h2>
-      <p>Ready to automate your growth? Drop us a line!</p>
+      <h2 style="text-align:center">Contact Us</h2>
+      <p style="text-align:center">Ready to automate your growth? Drop us a line!</p>
       <form action="https://formspree.io/f/your-form-id" method="POST">
         <input type="text" name="name" placeholder="Name" required>
         <input type="email" name="email" placeholder="Email" required>
-        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+        <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
         <button type="submit">Send Message</button>
       </form>
     </div>
   </section>
 
   <script>
+    // reveal on scroll
     const reveals=document.querySelectorAll('.reveal');
-    const revealOnScroll=()=>{reveals.forEach(el=>{const top=el.getBoundingClientRect().top;if(top<window.innerHeight-100){el.classList.add('active');}});};
-    window.addEventListener('scroll',revealOnScroll);revealOnScroll();
+    const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('active');obs.unobserve(e.target);}}),{threshold:.15}});
+    reveals.forEach(el=>obs.observe(el));
   </script>
 </body>
 </html>
