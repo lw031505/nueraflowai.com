@@ -105,13 +105,17 @@
       <h2 style="text-align:center">Contact Us</h2>
       <p style="text-align:center">Ready to automate your growth? Drop us a line!</p>
       <form action="https://formsubmit.co/support@nueraflowai.com" method="POST">
-        <input type="text" name="name" placeholder="Name" required>
-        <input type="email" name="email" placeholder="Email" required>
-        <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
-        <button type="submit">Send Message</button>
-        <input type="hidden" name="_subject" value="New message from NuEraFlow AI site!">
-        <input type="hidden" name="_captcha" value="false">
-      </form>
+  <input type="hidden" name="_subject" value="New message from NuEraFlow AI site!">
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_template" value="box">
+  <input type="hidden" name="_next" value="https://www.nueraflowai.com/thank-you.html">
+
+  <input type="text" name="name" placeholder="Name" required>
+  <input type="email" name="email" placeholder="Email" required>
+  <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+
+  <button type="submit">Send Message</button>
+</form>
     </div>
   </section>
 
