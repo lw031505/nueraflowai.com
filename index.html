@@ -1,20 +1,28 @@
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>NuEraFlow AI — Engineering Growth Systems</title>
 
+  <title>NuEraFlow AI — Engineering Growth Systems</title>
   <meta name="description" content="NuEraFlow AI engineers growth systems for modern companies. Lead generation, sales infrastructure, and process efficiency that scale." />
 
+  <!-- Favicons -->
   <link rel="icon" href="/favicon.ico?v=3" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png?v=3">
   <link rel="apple-touch-icon" href="/assets/favicon.png?v=3">
 
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
 
+  <!-- Social Meta -->
   <meta property="og:title" content="NuEraFlow AI — Engineering Growth Systems" />
   <meta property="og:description" content="Lead generation, sales infrastructure, and process efficiency that scale." />
   <meta property="og:image" content="assets/favicon.png" />
@@ -38,6 +46,7 @@
     body{
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       background:var(--bg);color:var(--ink);
+      -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
     }
     a{color:#b9dbff;text-decoration:none;transition:var(--t)}
     a:hover{color:#e6f3ff}
@@ -46,86 +55,77 @@
     header{
       position:fixed;inset:0 0 auto 0;z-index:1000;
       backdrop-filter:saturate(160%) blur(18px);
-      background:rgba(10,10,10,.92);
+      background:rgba(10,10,10,.82);
       border-bottom:1px solid var(--line);
     }
     .nav{
-      max-width:1200px;margin:0 auto;padding:16px 18px;
+      max-width:1200px;margin:0 auto;padding:20px 24px;
       display:flex;align-items:center;justify-content:space-between;
-      gap:12px;
     }
-    .brand{display:flex;align-items:center;gap:10px;min-width:0;}
-    .brand img{height:32px;width:auto;display:block;}
-    .brand span{font-weight:700;letter-spacing:.2px;}
+    .brand{display:flex;align-items:center;gap:10px;padding-top:2px}
+    .brand img{height:32px;width:auto;display:block;filter:drop-shadow(0 0 4px rgba(0,224,255,.4))}
+    .brand span{font-weight:700;letter-spacing:.2px}
+    .menu{display:flex;gap:22px}
+    .menu a{font-weight:600;font-size:.95rem;color:#dbe7ff}
+    .menu a:hover{opacity:.9}
 
-    /* Menu */
-    .menu{display:flex;gap:22px;align-items:center;}
-    .menu a{font-weight:600;font-size:.95rem;color:#dbe7ff;}
-
-    /* Mobile Toggle */
-    .nav-toggle{
-      display:none;position:relative;width:36px;height:36px;
-      border:1px solid rgba(255,255,255,.12);border-radius:10px;
-      background:#0f1216;cursor:pointer;padding:0;
-    }
-    .nav-toggle .bar{
-      position:absolute;left:9px;right:9px;height:2px;background:#e6f3ff;border-radius:2px;
-    }
-    .nav-toggle .bar:nth-child(1){top:11px;}
-    .nav-toggle .bar:nth-child(2){top:17px;}
-    .nav-toggle .bar:nth-child(3){top:23px;}
-
-    /* Mobile Layout */
-    @media (max-width: 768px){
-      .nav{padding:12px 14px;}
-      .brand img{height:26px;}
-      .brand span{font-size:15px;}
-      .menu{
-        position:absolute;top:100%;right:0;left:0;
-        display:block;background:#0b0d10;
-        border-bottom:1px solid var(--line);
-        transform:translateY(-8px);opacity:0;pointer-events:none;
-        transition:transform .2s ease,opacity .2s ease;
-      }
-      .menu a{
-        display:block;padding:14px 16px;border-top:1px solid var(--line);
-        font-size:16px;
-      }
-      .nav-toggle{display:block;}
-      .menu.open{
-        transform:translateY(0);opacity:1;pointer-events:auto;
-      }
-      .hero-wrap{padding-top:100px;}
-      .mark{width:clamp(240px,48vw,360px);margin-bottom:36px;}
-      .title{font-size:clamp(28px,7vw,44px);}
-      .subtitle{font-size:15.5px;margin-bottom:24px;}
-    }
-    @media (max-width:380px){
-      .brand span{display:none;}
-    }
+    /* Sections */
+    .section{padding:96px 20px}
+    .container{max-width:1200px;margin:0 auto}
 
     /* Hero */
-    .hero{min-height:100dvh;display:grid;place-items:center;text-align:center;}
-    .hero-wrap{max-width:980px;margin:0 auto;padding-top:120px;}
+    .hero{min-height:100dvh;display:grid;place-items:center;text-align:center;position:relative;overflow:hidden}
+    .hero-wrap{max-width:980px;margin:0 auto;padding-top:120px}
     .mark{
       width:clamp(340px,35vw,560px);
       margin:0 auto 54px;
       display:block;
-      filter:drop-shadow(0 0 22px rgba(0,119,255,.6)) drop-shadow(0 0 50px rgba(0,224,255,.35));
+      filter:drop-shadow(0 0 22px rgba(0,119,255,.6)) drop-shadow(0 0 50px rgba(0,224,255,.35)) drop-shadow(0 0 90px rgba(0,224,255,.15));
+      transition:var(--t);
     }
+    .mark:hover{transform:scale(1.02);filter:drop-shadow(0 0 28px rgba(0,119,255,.7)) drop-shadow(0 0 65px rgba(0,224,255,.45))}
     .title{
       font-size:clamp(34px,5vw,68px);font-weight:800;line-height:1.05;margin-bottom:16px;
       background:linear-gradient(135deg,var(--primary),var(--primary2));
       -webkit-background-clip:text;-webkit-text-fill-color:transparent;
     }
-    .subtitle{color:var(--muted);font-size:clamp(16px,1.6vw,20px);max-width:760px;margin:0 auto 32px;}
+    .subtitle{color:var(--muted);font-size:clamp(16px,1.6vw,20px);max-width:760px;margin:0 auto 32px}
     .cta{
       display:inline-block;padding:16px 28px;border-radius:999px;
-      font-weight:700;color:#051018;
-      background:linear-gradient(135deg,var(--primary),var(--primary2));box-shadow:var(--shadow);
+      font-weight:700;letter-spacing:.3px;color:#051018;
+      background:linear-gradient(135deg,var(--primary),var(--primary2));box-shadow:var(--shadow)
     }
+    .cta:hover{transform:translateY(-2px);box-shadow:0 0 25px rgba(0,224,255,.4)}
 
-    /* Contact, Footer, etc. */
+    /* What We Do */
+    .pillars{padding:96px 20px;background:var(--surface)}
+    .pillars h2{font-size:32px;margin-bottom:16px}
+    .pillars p.lead{color:var(--muted);max-width:820px}
+    .grid{margin-top:36px;display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+    .card{
+      background:#0e1012;border:1px solid var(--line);border-radius:var(--radius);
+      padding:24px;transition:var(--t);position:relative;overflow:hidden
+    }
+    .card:before{
+      content:"";position:absolute;inset:-1px -1px auto -1px;height:3px;
+      background:linear-gradient(90deg,var(--primary),var(--primary2));opacity:.85
+    }
+    .card:hover{transform:translateY(-4px)}
+    .card h3{font-size:20px;margin-bottom:8px}
+    .card p{color:var(--muted);font-size:15.5px}
+
+    /* Process */
+    .process{padding:96px 20px}
+    .steps{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin-top:24px}
+    .step{padding:22px;border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(180deg,#0e1114,#0b0d10)}
+    .step .num{
+      width:32px;height:32px;border-radius:50%;display:grid;place-items:center;
+      background:linear-gradient(135deg,var(--primary),var(--primary2));color:#061018;font-weight:800;margin-bottom:10px
+    }
+    .step h4{margin-bottom:6px}
+    .step p{color:var(--muted);font-size:15.5px}
+
+    /* Contact */
     .contact{padding:96px 20px;background:var(--surface)}
     form{
       max-width:720px;margin:24px auto 0;background:#0e1012;border:1px solid var(--line);
@@ -153,10 +153,7 @@
         <img src="assets/favicon.png" alt="NuEraFlow AI logo" />
         <span>NuEraFlow AI</span>
       </div>
-      <button class="nav-toggle" aria-expanded="false" aria-controls="site-menu">
-        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-      </button>
-      <nav id="site-menu" class="menu">
+      <nav class="menu">
         <a href="#what">What We Do</a>
         <a href="#process">How It Works</a>
         <a href="#contact">Contact</a>
@@ -165,6 +162,7 @@
   </header>
 
   <main>
+    <!-- Hero -->
     <section class="hero">
       <div class="hero-wrap">
         <img class="mark" src="assets/favicon.png" alt="NuEraFlow AI symbol" />
@@ -174,29 +172,83 @@
       </div>
     </section>
 
+    <!-- What We Do -->
+    <section id="what" class="pillars">
+      <div class="container">
+        <h2>What We Do</h2>
+        <p class="lead">Systems that drive consistent revenue. Built with clear data paths and simple operator workflows.</p>
+        <div class="grid">
+          <div class="card">
+            <h3>Lead Generation</h3>
+            <p>Prospect data pipelines. Targeted outreach. Routing that feeds your calendar and your CRM.</p>
+          </div>
+          <div class="card">
+            <h3>Sales Infrastructure</h3>
+            <p>Call center setup. Dialer and inbox orchestration. Clean handoffs from lead to booked appointment.</p>
+          </div>
+          <div class="card">
+            <h3>Process Efficiency</h3>
+            <p>Only the automations that matter. Faster response. Fewer gaps. Better unit economics.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process -->
+    <section id="process" class="process">
+      <div class="container">
+        <h2>How It Works</h2>
+        <div class="steps">
+          <div class="step">
+            <div class="num">1</div>
+            <h4>Discover</h4>
+            <p>We map your demand flow, tools, and constraints. Clear goals. Clear metrics.</p>
+          </div>
+          <div class="step">
+            <div class="num">2</div>
+            <h4>Build</h4>
+            <p>We connect the right systems. Data in. Meetings out. Everything tracked.</p>
+          </div>
+          <div class="step">
+            <div class="num">3</div>
+            <h4>Scale</h4>
+            <p>We tune for volume and reliability. Handoff playbooks and daily ops guides included.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
     <section id="contact" class="contact">
       <div class="container">
         <h2>Contact</h2>
         <p class="subtitle" style="text-align:center; max-width:700px; margin:0 auto 40px;">
           Ready to grow faster? Drop your info below and I’ll reach out personally.
         </p>
+
         <form action="https://formsubmit.co/support@nueraflowai.com" method="POST">
           <input type="hidden" name="_subject" value="NuEraFlow AI site inquiry" />
           <input type="hidden" name="_captcha" value="false" />
           <input type="hidden" name="_template" value="box" />
           <input type="hidden" name="_next" value="https://www.nueraflowai.com/thank-you.html" />
+
           <label for="name">Name</label>
           <input id="name" name="name" type="text" placeholder="Your name" required />
+
           <label for="email">Email</label>
           <input id="email" name="email" type="email" placeholder="Your email" required />
+
           <label for="phone">Phone</label>
           <input id="phone" name="phone" type="tel" placeholder="Your phone" required />
+
           <label for="message">Message</label>
           <textarea id="message" name="message" rows="5" placeholder="What do you want to build?" required></textarea>
+
           <p style="font-size:13px;color:#93a1b3;margin:8px 0 10px;text-align:center;">
             By providing your phone number, you agree to receive text messages from NuEraFlow AI. Message and data rates may apply.
             Read our <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms of Service</a>.
           </p>
+
           <button type="submit">Send</button>
         </form>
       </div>
@@ -209,8 +261,11 @@
 
   <script>
     document.getElementById('y').textContent = new Date().getFullYear();
-    document.querySelector('.nav-toggle').addEventListener('click',()=>{
-      document.querySelector('.menu').classList.toggle('open');
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',e=>{
+        e.preventDefault();
+        document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'});
+      });
     });
   </script>
 </body>
