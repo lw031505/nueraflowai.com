@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>NuEraFlow AI — Engineering Growth Systems</title>
+  <title>NuEraFlow AI - Engineering Growth Systems</title>
   <meta name="description" content="NuEraFlow AI engineers growth systems for modern companies. Lead generation, sales infrastructure, and process efficiency that scale." />
 
   <!-- Favicons -->
@@ -18,137 +18,189 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
 
   <!-- Social Meta -->
-  <meta property="og:title" content="NuEraFlow AI — Engineering Growth Systems" />
+  <meta property="og:title" content="NuEraFlow AI - Engineering Growth Systems" />
   <meta property="og:description" content="Lead generation, sales infrastructure, and process efficiency that scale." />
   <meta property="og:image" content="assets/favicon.png" />
   <meta property="og:type" content="website" />
   <meta name="theme-color" content="#0A0A0A" />
 
   <style>
-    :root {
+    :root{
       --bg:#0a0a0a;
       --surface:#111315;
       --ink:#f2f4f7;
       --muted:#9aa3ad;
-      --line:rgba(255,255,255,0.07);
+      --line:rgba(255,255,255,.07);
       --primary:#0077ff;
       --primary2:#00e0ff;
       --radius:14px;
       --shadow:0 10px 30px rgba(0,0,0,.25);
       --t:all .25s ease;
+      --header-h:72px; /* JS sets the precise value */
     }
     *{box-sizing:border-box;margin:0;padding:0}
     body{
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      background:var(--bg);color:var(--ink);
-      -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+      background:var(--bg);
+      color:var(--ink);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
     a{color:#b9dbff;text-decoration:none;transition:var(--t)}
     a:hover{color:#e6f3ff}
 
     /* Header */
     header{
-      position:fixed;inset:0 0 auto 0;z-index:1000;
+      position:fixed; inset:0 0 auto 0; z-index:1000;
       backdrop-filter:saturate(160%) blur(18px);
-      background:rgba(10,10,10,.82);
+      background:rgba(10,10,10,.92);
       border-bottom:1px solid var(--line);
     }
     .nav{
-      max-width:1200px;margin:0 auto;padding:20px 24px;
-      display:flex;align-items:center;justify-content:space-between;
+      max-width:1200px; margin:0 auto; padding:16px 18px;
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
     }
-    .brand{display:flex;align-items:center;gap:10px;padding-top:2px}
-    .brand img{height:32px;width:auto;display:block;filter:drop-shadow(0 0 4px rgba(0,224,255,.4))}
-    .brand span{font-weight:700;letter-spacing:.2px}
-    .menu{display:flex;gap:22px}
-    .menu a{font-weight:600;font-size:.95rem;color:#dbe7ff}
-    .menu a:hover{opacity:.9}
+    .brand{display:flex; align-items:center; gap:10px; min-width:0}
+    .brand img{height:32px; width:auto; display:block; filter:drop-shadow(0 0 4px rgba(0,224,255,.4))}
+    .brand span{font-weight:700; letter-spacing:.2px; white-space:nowrap}
 
-    /* Sections */
-    .section{padding:96px 20px}
-    .container{max-width:1200px;margin:0 auto}
+    /* Menu */
+    .menu{display:flex; gap:22px; align-items:center}
+    .menu a{font-weight:600; font-size:.95rem; color:#dbe7ff}
+
+    /* Mobile toggle */
+    .nav-toggle{
+      display:none; position:relative; width:36px; height:36px;
+      border:1px solid rgba(255,255,255,.12); border-radius:10px;
+      background:#0f1216; cursor:pointer; padding:0;
+    }
+    .nav-toggle .bar{
+      position:absolute; left:9px; right:9px; height:2px; background:#e6f3ff; border-radius:2px;
+    }
+    .nav-toggle .bar:nth-child(1){top:11px}
+    .nav-toggle .bar:nth-child(2){top:17px}
+    .nav-toggle .bar:nth-child(3){top:23px}
+
+    /* Dynamic layout spacing */
+    main{padding-top:calc(var(--header-h) + 10px);} /* consistent breathing room */
 
     /* Hero */
-    .hero{min-height:100dvh;display:grid;place-items:center;text-align:center;position:relative;overflow:hidden}
-    .hero-wrap{max-width:980px;margin:0 auto;padding-top:120px}
+    .hero{min-height:calc(100svh - var(--header-h)); display:grid; place-items:center; text-align:center; position:relative; overflow:hidden}
+    .hero-wrap{max-width:980px; margin:0 auto}
     .mark{
-      width:clamp(340px,35vw,560px);
+      width:clamp(340px, 35vw, 560px);
       margin:0 auto 54px;
       display:block;
       filter:drop-shadow(0 0 22px rgba(0,119,255,.6)) drop-shadow(0 0 50px rgba(0,224,255,.35)) drop-shadow(0 0 90px rgba(0,224,255,.15));
       transition:var(--t);
     }
-    .mark:hover{transform:scale(1.02);filter:drop-shadow(0 0 28px rgba(0,119,255,.7)) drop-shadow(0 0 65px rgba(0,224,255,.45))}
+    .mark:hover{transform:scale(1.02); filter:drop-shadow(0 0 28px rgba(0,119,255,.7)) drop-shadow(0 0 65px rgba(0,224,255,.45))}
     .title{
-      font-size:clamp(34px,5vw,68px);font-weight:800;line-height:1.05;margin-bottom:16px;
+      font-size:clamp(34px, 5vw, 68px);
+      font-weight:800; line-height:1.05; margin-bottom:16px;
       background:linear-gradient(135deg,var(--primary),var(--primary2));
-      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
     }
-    .subtitle{color:var(--muted);font-size:clamp(16px,1.6vw,20px);max-width:760px;margin:0 auto 32px}
+    .subtitle{color:var(--muted); font-size:clamp(16px,1.6vw,20px); max-width:760px; margin:0 auto 32px}
     .cta{
-      display:inline-block;padding:16px 28px;border-radius:999px;
-      font-weight:700;letter-spacing:.3px;color:#051018;
-      background:linear-gradient(135deg,var(--primary),var(--primary2));box-shadow:var(--shadow)
+      display:inline-block; padding:16px 28px; border-radius:999px;
+      font-weight:700; letter-spacing:.3px; color:#051018;
+      background:linear-gradient(135deg,var(--primary),var(--primary2)); box-shadow:var(--shadow)
     }
-    .cta:hover{transform:translateY(-2px);box-shadow:0 0 25px rgba(0,224,255,.4)}
+    .cta:hover{transform:translateY(-2px); box-shadow:0 0 25px rgba(0,224,255,.4)}
+
+    /* Sections */
+    .section{padding:96px 20px}
+    .container{max-width:1200px; margin:0 auto}
 
     /* What We Do */
-    .pillars{padding:96px 20px;background:var(--surface)}
-    .pillars h2{font-size:32px;margin-bottom:16px}
-    .pillars p.lead{color:var(--muted);max-width:820px}
-    .grid{margin-top:36px;display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+    .pillars{padding:96px 20px; background:var(--surface)}
+    .pillars h2{font-size:32px; margin-bottom:16px}
+    .pillars p.lead{color:var(--muted); max-width:820px}
+    .grid{margin-top:36px; display:grid; gap:22px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
     .card{
-      background:#0e1012;border:1px solid var(--line);border-radius:var(--radius);
-      padding:24px;transition:var(--t);position:relative;overflow:hidden
+      background:#0e1012; border:1px solid var(--line); border-radius:var(--radius);
+      padding:24px; transition:var(--t); position:relative; overflow:hidden
     }
     .card:before{
-      content:"";position:absolute;inset:-1px -1px auto -1px;height:3px;
-      background:linear-gradient(90deg,var(--primary),var(--primary2));opacity:.85
+      content:""; position:absolute; inset:-1px -1px auto -1px; height:3px;
+      background:linear-gradient(90deg,var(--primary),var(--primary2)); opacity:.85
     }
     .card:hover{transform:translateY(-4px)}
-    .card h3{font-size:20px;margin-bottom:8px}
-    .card p{color:var(--muted);font-size:15.5px}
+    .card h3{font-size:20px; margin-bottom:8px}
+    .card p{color:var(--muted); font-size:15.5px}
 
     /* Process */
     .process{padding:96px 20px}
-    .steps{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin-top:24px}
-    .step{padding:22px;border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(180deg,#0e1114,#0b0d10)}
+    .steps{display:grid; gap:22px; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); margin-top:24px}
+    .step{padding:22px; border:1px solid var(--line); border-radius:var(--radius); background:linear-gradient(180deg,#0e1114,#0b0d10)}
     .step .num{
-      width:32px;height:32px;border-radius:50%;display:grid;place-items:center;
-      background:linear-gradient(135deg,var(--primary),var(--primary2));color:#061018;font-weight:800;margin-bottom:10px
+      width:32px; height:32px; border-radius:50%; display:grid; place-items:center;
+      background:linear-gradient(135deg,var(--primary),var(--primary2)); color:#061018; font-weight:800; margin-bottom:10px
     }
     .step h4{margin-bottom:6px}
-    .step p{color:var(--muted);font-size:15.5px}
+    .step p{color:var(--muted); font-size:15.5px}
 
     /* Contact */
-    .contact{padding:96px 20px;background:var(--surface)}
+    .contact{padding:96px 20px; background:var(--surface)}
     form{
-      max-width:720px;margin:24px auto 0;background:#0e1012;border:1px solid var(--line);
-      border-radius:var(--radius);padding:28px;box-shadow:var(--shadow)
+      max-width:720px; margin:24px auto 0; background:#0e1012; border:1px solid var(--line);
+      border-radius:var(--radius); padding:28px; box-shadow:var(--shadow)
     }
-    label{display:block;font-weight:600;color:#c7d2e2;font-size:.95rem;margin:8px 0}
+    label{display:block; font-weight:600; color:#c7d2e2; font-size:.95rem; margin:8px 0}
     input,textarea{
-      width:100%;padding:14px;border-radius:10px;border:1px solid #1b2229;background:#0f1216;color:#e8eef7;
-      font-size:16px;outline:none;transition:var(--t)
+      width:100%; padding:14px; border-radius:10px; border:1px solid #1b2229; background:#0f1216; color:#e8eef7;
+      font-size:16px; outline:none; transition:var(--t)
     }
-    input:focus,textarea:focus{border-color:#1f8bff;box-shadow:0 0 0 2px rgba(0,140,255,.2)}
+    input:focus,textarea:focus{border-color:#1f8bff; box-shadow:0 0 0 2px rgba(0,140,255,.2)}
     button{
-      width:100%;margin-top:10px;padding:16px;border-radius:12px;border:0;
-      background:linear-gradient(135deg,var(--primary),var(--primary2));color:#051018;font-weight:800;cursor:pointer;transition:var(--t)
+      width:100%; margin-top:10px; padding:16px; border-radius:12px; border:0;
+      background:linear-gradient(135deg,var(--primary),var(--primary2)); color:#051018; font-weight:800; cursor:pointer; transition:var(--t)
     }
     button:hover{transform:translateY(-2px)}
-    footer{padding:40px 20px;border-top:1px solid var(--line);text-align:center;color:#9fb0c3}
+    footer{padding:40px 20px; border-top:1px solid var(--line); text-align:center; color:#9fb0c3}
+
+    /* Mobile */
+    @media (max-width:768px){
+      .nav{padding:12px 14px}
+      .brand img{height:26px}
+      .brand span{font-size:15px}
+
+      .nav-toggle{display:block}
+      .menu{
+        position:absolute; top:100%; left:0; right:0; display:block; background:#0b0d10;
+        border-bottom:1px solid var(--line);
+        transform:translateY(-8px); opacity:0; pointer-events:none;
+        transition:transform .2s ease, opacity .2s ease;
+      }
+      .menu a{display:block; padding:14px 16px; border-top:1px solid var(--line); font-size:16px}
+      .menu.open{transform:translateY(0); opacity:1; pointer-events:auto}
+
+      .hero{min-height:calc(100svh - var(--header-h))}
+      .mark{width:clamp(240px, 50vw, 360px); margin-bottom:36px}
+      .title{font-size:clamp(28px, 7vw, 44px)}
+      .subtitle{font-size:15.5px; margin-bottom:24px}
+    }
+    @media (max-width:380px){
+      .brand span{display:none}
+    }
   </style>
 </head>
 
 <body>
-  <header>
+  <header id="site-header">
     <div class="nav">
       <div class="brand">
         <img src="assets/favicon.png" alt="NuEraFlow AI logo" />
         <span>NuEraFlow AI</span>
       </div>
-      <nav class="menu">
+
+      <!-- Mobile menu button -->
+      <button class="nav-toggle" aria-expanded="false" aria-controls="site-menu" aria-label="Toggle menu">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+
+      <nav id="site-menu" class="menu">
         <a href="#what">What We Do</a>
         <a href="#process">How It Works</a>
         <a href="#contact">Contact</a>
@@ -255,13 +307,48 @@
   </footer>
 
   <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
+    // Smooth anchor scroll
     document.querySelectorAll('a[href^="#"]').forEach(a=>{
       a.addEventListener('click',e=>{
-        e.preventDefault();
-        document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'});
+        const id = a.getAttribute('href');
+        if(id.length > 1){
+          e.preventDefault();
+          document.querySelector(id).scrollIntoView({behavior:'smooth'});
+        }
       });
     });
+
+    // Mobile menu toggle
+    const toggle = document.querySelector('.nav-toggle');
+    const menu = document.getElementById('site-menu');
+    toggle.addEventListener('click', ()=>{
+      const open = menu.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      setHeaderHeight(); // ensure spacing updates if menu height changes
+    });
+    // Close menu when a link is tapped
+    menu.querySelectorAll('a').forEach(link=>{
+      link.addEventListener('click', ()=>{
+        if(menu.classList.contains('open')){
+          menu.classList.remove('open');
+          toggle.setAttribute('aria-expanded','false');
+          setHeaderHeight();
+        }
+      });
+    });
+
+    // Dynamic header height -> consistent spacing
+    const header = document.getElementById('site-header');
+    function setHeaderHeight(){
+      const h = header.getBoundingClientRect().height;
+      document.documentElement.style.setProperty('--header-h', h + 'px');
+    }
+    window.addEventListener('resize', setHeaderHeight, {passive:true});
+    window.addEventListener('load', setHeaderHeight);
+    setHeaderHeight();
+
+    // Footer year
+    document.getElementById('y').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
