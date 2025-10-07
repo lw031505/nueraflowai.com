@@ -51,17 +51,27 @@
     /* Layout padding driven by header height */
     main{padding-top:calc(var(--header-h) + 10px)}
 
-    /* Hero */
-    .hero{min-height:calc(100svh - var(--header-h));display:grid;place-items:center;text-align:center}
-    .hero-wrap{
-      max-width:980px;margin:0 auto;
-      display:flex;flex-direction:column;align-items:center;
-      row-gap:12px; /* tightens title to logo */
+    /* Hero - Updated to reduce vertical spacing */
+    .hero{
+      min-height:calc(100svh - var(--header-h));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding-top:40px; /* Add some top padding to move content up */
     }
-    /* Bigger logo + tighter gap */
+    .hero-wrap{
+      max-width:980px;
+      margin:-80px auto 0; /* Negative top margin to pull content up */
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      row-gap:12px;
+    }
+    /* Logo stays same size with tighter gap */
     .mark{
       width:clamp(420px,45vw,720px);
-      margin:0 auto 0; /* remove big gap below */
+      margin:0 auto 0;
       display:block;
       filter:drop-shadow(0 0 24px rgba(0,119,255,.65)) drop-shadow(0 0 56px rgba(0,224,255,.35)) drop-shadow(0 0 110px rgba(0,224,255,.18));
       transition:var(--t);
@@ -118,8 +128,9 @@
       .menu a{display:block;padding:14px 16px;border-top:1px solid var(--line);font-size:16px}
       .menu.open{transform:translateY(0);opacity:1;pointer-events:auto}
 
-      .mark{width:clamp(300px,60vw,480px)}         /* still big on phones */
-      .hero-wrap{row-gap:10px}                     /* title closer on mobile too */
+      .hero{padding-top:20px} /* Less padding on mobile */
+      .hero-wrap{margin:-40px auto 0;row-gap:10px} /* Less negative margin on mobile */
+      .mark{width:clamp(300px,60vw,480px)}
       .title{font-size:clamp(28px,7vw,44px);margin-bottom:8px}
       .subtitle{font-size:15.5px;margin-bottom:22px}
     }
@@ -207,7 +218,7 @@
       <div class="container">
         <h2>Contact</h2>
         <p class="subtitle" style="text-align:center;max-width:700px;margin:0 auto 40px">
-          Ready to grow faster? Drop your info below and I’ll reach out personally.
+          Ready to grow faster? Drop your info below and I'll reach out personally.
         </p>
         <form action="https://formsubmit.co/support@nueraflowai.com" method="POST">
           <input type="hidden" name="_subject" value="NuEraFlow AI site inquiry" />
