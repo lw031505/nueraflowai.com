@@ -9,16 +9,44 @@ const EMAIL = "nueraflow@gmail.com";
 
 type Status = "idle" | "loading" | "success" | "error";
 
+function isValidEmail(email: string) {
+  return /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/.test(email.trim());
+}
+
+function isValidPhone(phone: string) {
+  return phone.replace(/\D/g, "").length >= 10;
+}
+
 export default function ContactPage() {
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [phoneError, setPhoneError] = useState("");
+
+  function validateEmail(val: string) {
+    setEmailError(val && !isValidEmail(val) ? "Please enter a valid email address." : "");
+  }
+
+  function validatePhone(val: string) {
+    setPhoneError(val && !isValidPhone(val) ? "Please enter a valid phone number (at least 10 digits)." : "");
+  }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setStatus("loading");
-
     const form = e.currentTarget;
     const data = Object.fromEntries(new FormData(form));
+
+    const emailVal = data.email as string;
+    const phoneVal = data.phone as string;
+
+    const emailBad = !isValidEmail(emailVal);
+    const phoneBad = !isValidPhone(phoneVal);
+
+    if (emailBad) setEmailError("Please enter a valid email address.");
+    if (phoneBad) setPhoneError("Please enter a valid phone number (at least 10 digits).");
+    if (emailBad || phoneBad) return;
+
+    setStatus("loading");
 
     try {
       const res = await fetch(`https://formsubmit.co/ajax/${EMAIL}`, {
@@ -154,8 +182,11 @@ export default function ContactPage() {
                       </label>
                       <input
                         id="email" name="email" type="email" placeholder="your@email.com" required
-                        className="w-full px-4 py-3 rounded-xl bg-surface border border-white/[0.08] text-ink placeholder:text-muted text-sm outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/20 transition-all"
+                        onChange={(e) => validateEmail(e.target.value)}
+                        onBlur={(e) => validateEmail(e.target.value)}
+                        className={`w-full px-4 py-3 rounded-xl bg-surface border text-ink placeholder:text-muted text-sm outline-none focus:ring-1 transition-all ${emailError ? "border-red-500/60 focus:border-red-500/60 focus:ring-red-500/20" : "border-white/[0.08] focus:border-blue-500/50 focus:ring-blue-500/20"}`}
                       />
+                      {emailError && <p className="text-xs text-red-400 mt-1.5">{emailError}</p>}
                     </div>
                   </div>
 
@@ -164,9 +195,12 @@ export default function ContactPage() {
                       Phone
                     </label>
                     <input
-                      id="phone" name="phone" type="tel" placeholder="(555) 000-0000"
-                      className="w-full px-4 py-3 rounded-xl bg-surface border border-white/[0.08] text-ink placeholder:text-muted text-sm outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/20 transition-all"
+                      id="phone" name="phone" type="tel" placeholder="(555) 000-0000" required
+                      onChange={(e) => validatePhone(e.target.value)}
+                      onBlur={(e) => validatePhone(e.target.value)}
+                      className={`w-full px-4 py-3 rounded-xl bg-surface border text-ink placeholder:text-muted text-sm outline-none focus:ring-1 transition-all ${phoneError ? "border-red-500/60 focus:border-red-500/60 focus:ring-red-500/20" : "border-white/[0.08] focus:border-blue-500/50 focus:ring-blue-500/20"}`}
                     />
+                    {phoneError && <p className="text-xs text-red-400 mt-1.5">{phoneError}</p>}
                   </div>
 
                   <div>
