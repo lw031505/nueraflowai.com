@@ -1,4 +1,4 @@
-import Anthropic from "@anthropic-ai/sdk";
+import Groq from "groq-sdk";
 import { NextRequest } from "next/server";
 
 const SYSTEM_PROMPT = `You are the AI assistant for NuEraFlow AI, a company founded by Lucas Wagner that helps small business owners learn and implement AI in their businesses.
@@ -32,7 +32,7 @@ Your role:
 Tone: Knowledgeable but approachable. You make AI feel exciting, not scary. Never condescending. Always helpful.`;
 
 export async function POST(req: NextRequest) {
-  if (!process.env.ANTHROPIC_API_KEY) {
+  if (!process.env.GROQ_API_KEY) {
     return new Response(
       JSON.stringify({ error: "AI assistant is not configured yet. Please contact us directly at support@nueraflowai.com" }),
       { status: 503, headers: { "Content-Type": "application/json" } }
@@ -48,25 +48,24 @@ export async function POST(req: NextRequest) {
     });
   }
 
-  const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+  const client = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
-  const stream = await client.messages.stream({
-    model: "claude-haiku-4-5-20251001",
+  const stream = await client.chat.completions.create({
+    model: "llama-3.1-8b-instant",
     max_tokens: 512,
-    system: SYSTEM_PROMPT,
-    messages: messages.slice(-10),
+    messages: [
+      { role: "system", content: SYSTEM_PROMPT },
+      ...messages.slice(-10),
+    ],
+    stream: true,
   });
 
   const encoder = new TextEncoder();
   const readable = new ReadableStream({
     async start(controller) {
       for await (const chunk of stream) {
-        if (
-          chunk.type === "content_block_delta" &&
-          chunk.delta.type === "text_delta"
-        ) {
-          controller.enqueue(encoder.encode(chunk.delta.text));
-        }
+        const text = chunk.choices[0]?.delta?.content ?? "";
+        if (text) controller.enqueue(encoder.encode(text));
       }
       controller.close();
     },
