@@ -7,7 +7,7 @@ export const SITE = {
   tagline: "AI Made Simple. Business Made Powerful.",
   description:
     "NuEraFlow AI helps small business owners learn, use, and benefit from AI through 1-on-1 coaching, team workshops, and hands-on consulting.",
-  email: "support@nueraflowai.com",
+  email: "nueraflow@gmail.com",
   url: "https://www.nueraflowai.com",
   founder: "Lucas Wagner",
   founded: "2025",
