@@ -62,6 +62,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={inter.variable}>
       <head>
+        <meta name="google-site-verification" content="T8G_q-hXF9XxoDpeJhuqYp4cbjL3YlQDxQ_-e5OyrV8" />
         {schemas.map((s, i) => (
           <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(s) }} />
         ))}
