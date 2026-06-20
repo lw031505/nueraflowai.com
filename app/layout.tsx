@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ChatWidget from "@/components/ChatWidget";
 import { SITE } from "@/lib/content";
-import { getOrganizationSchema } from "@/lib/schema";
+import { getOrganizationSchema, getWebsiteSchema, getLocalBusinessSchema } from "@/lib/schema";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -54,15 +54,14 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const schema = getOrganizationSchema();
+  const schemas = [getOrganizationSchema(), getWebsiteSchema(), getLocalBusinessSchema()];
 
   return (
     <html lang="en" className={inter.variable}>
       <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-        />
+        {schemas.map((s, i) => (
+          <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(s) }} />
+        ))}
       </head>
       <body className="font-sans bg-bg text-ink antialiased">
         <Header />

@@ -4,6 +4,7 @@ import { ArrowLeft, Calendar, Tag } from "lucide-react";
 import { marked } from "marked";
 import { getAllPosts, getPostBySlug } from "@/lib/blog";
 import { SITE } from "@/lib/content";
+import { getBlogPostSchema, getFAQSchema } from "@/lib/schema";
 import type { Metadata } from "next";
 
 interface Props {
@@ -31,8 +32,17 @@ export default function BlogPostPage({ params }: Props) {
 
   const html = marked(post.content) as string;
 
+  // Extract FAQs from post content for schema (format: **Q: ...** \n answer)
+  const faqMatches = [...post.content.matchAll(/\*\*Q:\s*(.+?)\*\*\s*\n+([^*\n][^\n]+(?:\n(?!\n|\*\*)[^\n]+)*)/g)];
+  const faqs = faqMatches.map((m) => ({ q: m[1].trim(), a: m[2].trim() }));
+
+  const blogSchema = getBlogPostSchema(post.title, post.description, post.date, post.slug);
+  const faqSchema = faqs.length > 0 ? getFAQSchema(faqs) : null;
+
   return (
     <article className="pt-36 pb-28 px-4">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }} />
+      {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />}
       <div className="max-w-3xl mx-auto">
         {/* Back */}
         <Link
