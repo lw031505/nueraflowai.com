@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     googleBot: { index: true, follow: true },
   },
   verification: {
-    google: "798286f83a680a53",
+    google: "T8G_q-hXF9XxoDpeJhuqYp4cbjL3YlQDxQ_-e5OyrV8",
   },
 };
 
