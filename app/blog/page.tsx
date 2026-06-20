@@ -5,6 +5,8 @@ import { getAllPosts } from "@/lib/blog";
 import { SITE } from "@/lib/content";
 import type { Metadata } from "next";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Blog — AI Tips & Insights for Small Business",
   description: `Practical AI tips, tutorials, and guides for small business owners from ${SITE.founder} at ${SITE.name}.`,

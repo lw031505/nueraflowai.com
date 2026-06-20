@@ -7,12 +7,10 @@ import { SITE } from "@/lib/content";
 import { getBlogPostSchema, getFAQSchema } from "@/lib/schema";
 import type { Metadata } from "next";
 
+export const dynamic = "force-dynamic";
+
 interface Props {
   params: { slug: string };
-}
-
-export async function generateStaticParams() {
-  return getAllPosts().map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
