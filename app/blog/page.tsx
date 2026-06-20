@@ -1,67 +1,67 @@
 import Link from "next/link";
-import { ArrowRight, Rss } from "lucide-react";
+import { ArrowRight, Calendar, Tag } from "lucide-react";
 import AnimatedSection from "@/components/ui/AnimatedSection";
+import { getAllPosts } from "@/lib/blog";
 import { SITE } from "@/lib/content";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Blog — AI Tips & Insights for Small Business",
-  description: `Practical AI tips, tutorials, and insights for small business owners from ${SITE.founder} at ${SITE.name}. Coming soon.`,
+  description: `Practical AI tips, tutorials, and guides for small business owners from ${SITE.founder} at ${SITE.name}.`,
 };
 
-const COMING_SOON_TOPICS = [
-  "5 AI Tools Every Small Business Should Be Using in 2025",
-  "How to Write Better Prompts for ChatGPT (Business Edition)",
-  "Automate Your Email Responses with AI — Step by Step",
-  "The Real ROI of AI for Small Businesses",
-  "AI vs. Hiring: When to Use Each",
-  "How to Train Your Team on AI Without Overwhelming Them",
-];
-
 export default function BlogPage() {
+  const posts = getAllPosts();
+
   return (
     <section className="pt-36 pb-28 px-4">
-      <div className="max-w-4xl mx-auto text-center">
-        <AnimatedSection>
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-300 text-xs font-semibold mb-6">
-            <Rss size={12} />
-            Coming Soon
-          </div>
+      <div className="max-w-4xl mx-auto">
+        <AnimatedSection className="mb-16">
+          <p className="text-xs font-bold uppercase tracking-widest text-blue-400 mb-3">Blog</p>
           <h1 className="text-5xl sm:text-6xl font-extrabold tracking-tight gradient-text-hero mb-6 leading-tight">
-            The AI for Business Blog
+            AI for Business, Plain and Simple
           </h1>
-          <p className="text-muted text-xl leading-relaxed max-w-2xl mx-auto mb-16">
-            Practical guides, tutorials, and insights to help small business owners use AI without the overwhelm. First posts dropping soon.
+          <p className="text-muted text-xl leading-relaxed max-w-2xl">
+            Practical guides to help small business owners use AI without the overwhelm.
           </p>
         </AnimatedSection>
 
-        {/* Preview topics */}
-        <AnimatedSection delay={100}>
-          <div className="text-left rounded-2xl bg-card border border-white/[0.07] p-8 mb-12">
-            <p className="text-xs font-bold uppercase tracking-widest text-blue-400 mb-6">Topics We&apos;re Covering</p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {COMING_SOON_TOPICS.map((topic) => (
-                <div key={topic} className="flex items-start gap-3 p-4 rounded-xl bg-surface border border-white/[0.05]">
-                  <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-400 flex-shrink-0" />
-                  <p className="text-sm text-muted leading-snug">{topic}</p>
-                </div>
-              ))}
+        {posts.length === 0 ? (
+          <AnimatedSection delay={100}>
+            <div className="rounded-2xl bg-card border border-white/[0.07] p-12 text-center">
+              <p className="text-muted">First posts coming soon. Check back shortly.</p>
             </div>
+          </AnimatedSection>
+        ) : (
+          <div className="flex flex-col gap-6">
+            {posts.map((post, i) => (
+              <AnimatedSection key={post.slug} delay={i * 80}>
+                <Link href={`/blog/${post.slug}`} className="group block">
+                  <div className="p-8 rounded-2xl bg-card border border-white/[0.07] card-border card-hover-border hover:-translate-y-1 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/10">
+                    <div className="flex flex-wrap items-center gap-3 mb-4">
+                      <span className="flex items-center gap-1.5 text-xs text-muted">
+                        <Calendar size={12} />
+                        {new Date(post.date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
+                      </span>
+                      {post.tags.slice(0, 2).map((tag) => (
+                        <span key={tag} className="flex items-center gap-1 text-xs px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20">
+                          <Tag size={10} /> {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <h2 className="text-xl font-bold text-ink mb-3 group-hover:text-blue-300 transition-colors leading-snug">
+                      {post.title}
+                    </h2>
+                    <p className="text-muted text-sm leading-relaxed mb-4">{post.description}</p>
+                    <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-blue-400 group-hover:gap-3 transition-all duration-200">
+                      Read More <ArrowRight size={14} />
+                    </span>
+                  </div>
+                </Link>
+              </AnimatedSection>
+            ))}
           </div>
-        </AnimatedSection>
-
-        <AnimatedSection delay={200}>
-          <p className="text-muted mb-6 text-sm">
-            Want to be notified when we publish? Reach out directly.
-          </p>
-          <Link
-            href="/contact"
-            className="group inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-bold bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-lg shadow-blue-500/20 hover:-translate-y-0.5 transition-all duration-200"
-          >
-            Get in Touch
-            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-          </Link>
-        </AnimatedSection>
+        )}
       </div>
     </section>
   );
